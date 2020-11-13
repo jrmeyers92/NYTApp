@@ -15,6 +15,9 @@ async function getArticles() {
 			data = data.results;
 			console.log(data);
 			data.forEach((element) => {
+				const div = document.createElement("div");
+				div.className = "article ";
+
 				const title = document.createElement("h2");
 				title.innerHTML = element.title;
 				articlesDiv.appendChild(title);
@@ -22,6 +25,15 @@ async function getArticles() {
 				const abstract = document.createElement("p");
 				abstract.innerHTML = element.abstract;
 				articlesDiv.appendChild(abstract);
+
+				const link = document.createElement("a");
+				link.href = element.url;
+				// link.setAttribute("_blank");
+				link.innerHTML = element.url;
+				articlesDiv.appendChild(link);
+
+				const br = document.createElement("br");
+				articlesDiv.appendChild(br);
 
 				const author = document.createElement("i");
 				author.innerHTML = element.byline;
