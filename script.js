@@ -1,6 +1,7 @@
 const APP_ID = "511a5efa-6ff4-4676-925e-82528aa15538";
 const API_KEY = "Bn1HVpG92uAJyIirwt0MaXniuqAJpLyK";
 const articlesDiv = document.getElementById("articles");
+const mediaMeta = "media-metadata";
 
 async function getArticles() {
 	const result = await fetch(
@@ -15,10 +16,19 @@ async function getArticles() {
 			console.log(data);
 			data.forEach((element) => {
 				const title = document.createElement("h2");
-				const abstract = document.createElement("p");
 				title.innerHTML = element.title;
+				articlesDiv.appendChild(title);
+
+				const abstract = document.createElement("p");
 				abstract.innerHTML = element.abstract;
 				articlesDiv.appendChild(abstract);
+
+				const author = document.createElement("i");
+				author.innerHTML = element.byline;
+				articlesDiv.appendChild(author);
+
+				const hr = document.createElement("hr");
+				articlesDiv.appendChild(hr);
 			});
 		});
 }
